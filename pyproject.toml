@@ -14,11 +14,11 @@ dynamic = ["version"]
 
 [project.scripts]
 # Clear CLI entry points for Databricks to execute as Python tasks
-extract-features = "mlops_blueprint.feature_engineering.main:app"
-train-model = "mlops_blueprint.training.main:app"
-validate-model = "mlops_blueprint.validation.main:app"
-deploy-model = "mlops_blueprint.deployment.main:app"
-run-inference = "mlops_blueprint.batch_inference.main:app"
+extract-features = "feature_engineering.main:app"
+train-model = "training.main:app"
+validate-model = "validation.main:app"
+deploy-model = "deployment.main:app"
+run-inference = "batch_inference.main:app"
 
 [project.optional-dependencies]
 local_dev = [
@@ -27,12 +27,16 @@ local_dev = [
 ]
 
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools>=61.0", "setuptools_scm[toml]>=8"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
 where = ["src"]
-include = ["mlops_blueprint*"]
 
-[tool.setuptools.dynamic]
-version = {text = "0.1.0"}
+[dependency-groups]
+local-dev = [
+    "pip>=26.0.1",
+]
+
+[tool.setuptools_scm]
+write_to = "src/_version.py"
