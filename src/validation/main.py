@@ -1,10 +1,10 @@
 import typer
 import logging
 import mlflow
-from mlops_blueprint.config.config import ProjectConfig
+from config.config import ProjectConfig
 from databricks.connect import DatabricksSession
 from mlflow.tracking import MlflowClient
-from mlops_blueprint.validation.evaluate import evaluate_model
+from .evaluate import evaluate_model
 
 app = typer.Typer()
 

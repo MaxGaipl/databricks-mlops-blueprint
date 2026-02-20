@@ -1,8 +1,8 @@
 import typer
 import logging
-from mlops_blueprint.config.config import ProjectConfig
+from config.config import ProjectConfig
 from databricks.connect import DatabricksSession
-from mlops_blueprint.feature_engineering.compute_features import compute_features
+from .compute_features import compute_features
 
 # Optional: Add databricks feature store import
 # from databricks.feature_engineering import FeatureEngineeringClient

@@ -1,9 +1,8 @@
 import typer
 import logging
-from mlops_blueprint.config.config import ProjectConfig
+from config.config import ProjectConfig
 from mlflow.tracking import MlflowClient
-from mlops_blueprint.deployment.promote import promote_model
-from mlops_blueprint.deployment.promote import promote_model
+from .promote import promote_model
 
 app = typer.Typer()
 

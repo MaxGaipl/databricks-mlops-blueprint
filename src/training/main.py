@@ -1,9 +1,9 @@
 import typer
 import logging
 import mlflow
-from mlops_blueprint.config.config import ProjectConfig
+from config.config import ProjectConfig
 from databricks.connect import DatabricksSession
-from mlops_blueprint.training.train import build_model
+from .train import build_model
 
 # Optional: FeatureEngineeringClient
 # from databricks.feature_engineering import FeatureEngineeringClient

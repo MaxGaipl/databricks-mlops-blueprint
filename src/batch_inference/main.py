@@ -1,9 +1,9 @@
 import typer
 import logging
-from mlops_blueprint.config.config import ProjectConfig
+from config.config import ProjectConfig
 from databricks.connect import DatabricksSession
 from mlflow.tracking import MlflowClient
-from mlops_blueprint.batch_inference.score import score_batch
+from .score import score_batch
 
 # Optional feature engineering client dependencies
 # from databricks.feature_engineering import FeatureEngineeringClient
