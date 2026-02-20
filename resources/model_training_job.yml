@@ -1,0 +1,49 @@
+resources:
+  jobs:
+    model_training_job:
+      name: ${bundle.target}-model-training-pipeline
+
+      environments:
+        - environment_key: default
+          spec:
+            environment_version: "3"
+            dependencies:
+              - ../dist/*.whl
+
+      tasks:
+        - task_key: "train_model"
+          environment_key: default
+          python_wheel_task:
+            package_name: mlops-blueprint
+            entry_point: train-model
+            parameters:
+              - "--config"
+              - "conf/project.yml"
+              - "--env"
+              - "${bundle.target}"
+
+        - task_key: "validate_model"
+          environment_key: default
+          depends_on:
+            - task_key: "train_model"
+          python_wheel_task:
+            package_name: mlops-blueprint
+            entry_point: validate-model
+            parameters:
+              - "--config"
+              - "conf/project.yml"
+              - "--env"
+              - "${bundle.target}"
+
+        - task_key: "deploy_model"
+          environment_key: default
+          depends_on:
+            - task_key: "validate_model"
+          python_wheel_task:
+            package_name: mlops-blueprint
+            entry_point: deploy-model
+            parameters:
+              - "--config"
+              - "conf/project.yml"
+              - "--env"
+              - "${bundle.target}"

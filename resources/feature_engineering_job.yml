@@ -1,0 +1,23 @@
+resources:
+  jobs:
+    feature_engineering_job:
+      name: ${bundle.target}-feature-engineering
+
+      environments:
+        - environment_key: default
+          spec:
+            environment_version: "3"
+            dependencies:
+              - ../dist/*.whl
+
+      tasks:
+        - task_key: "feature_engineering"
+          environment_key: default
+          python_wheel_task:
+            package_name: mlops-blueprint
+            entry_point: extract-features
+            parameters:
+              - "--config"
+              - "conf/project.yml"
+              - "--env"
+              - "${bundle.target}"

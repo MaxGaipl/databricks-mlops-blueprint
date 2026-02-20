@@ -1,0 +1,38 @@
+[project]
+name = "mlops-blueprint"
+description = "A standard MLOps Blueprint based on Python Wheels, Pydantic configs, and Databricks Asset Bundles."
+requires-python = ">=3.12, <3.13"
+dependencies = [
+    "pydantic>=2.0.0",
+    "mlflow>=2.11.3",
+    "scikit-learn>=1.1.1",
+    "pandas>=1.5.3",
+    "pyyaml>=6.0.1",
+    "typer>=0.12.0"
+]
+dynamic = ["version"]
+
+[project.scripts]
+# Clear CLI entry points for Databricks to execute as Python tasks
+extract-features = "mlops_blueprint.feature_engineering.main:app"
+train-model = "mlops_blueprint.training.main:app"
+validate-model = "mlops_blueprint.validation.main:app"
+deploy-model = "mlops_blueprint.deployment.main:app"
+run-inference = "mlops_blueprint.batch_inference.main:app"
+
+[project.optional-dependencies]
+local_dev = [
+    "databricks-connect>=17.2.0", 
+    "pytest>=7.1.2"
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["mlops_blueprint*"]
+
+[tool.setuptools.dynamic]
+version = {text = "0.1.0"}

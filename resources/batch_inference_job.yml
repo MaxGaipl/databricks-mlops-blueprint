@@ -1,0 +1,23 @@
+resources:
+  jobs:
+    batch_inference_job:
+      name: ${bundle.target}-batch-inference
+
+      environments:
+        - environment_key: default
+          spec:
+            environment_version: "3"
+            dependencies:
+              - ../dist/*.whl
+
+      tasks:
+        - task_key: "run_inference"
+          environment_key: default
+          python_wheel_task:
+            package_name: mlops-blueprint
+            entry_point: run-inference
+            parameters:
+              - "--config"
+              - "conf/project.yml"
+              - "--env"
+              - "${bundle.target}"

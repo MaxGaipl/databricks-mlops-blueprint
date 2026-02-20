@@ -1,0 +1,27 @@
+bundle:
+  name: mlops-blueprint
+
+artifacts:
+  default:
+    type: whl
+    path: .
+    # Uses local `uv` or `python -m build` automatically
+
+include:
+  - resources/*.yml
+
+targets:
+  dev:
+    default: true
+    mode: development
+    workspace:
+      host: https://dbc-c01c01f3-1172.cloud.databricks.com
+    variables:
+      env: dev
+
+  prod:
+    mode: production
+    workspace:
+      host: https://dbc-c01c01f3-1172.cloud.databricks.com
+    variables:
+      env: prod
