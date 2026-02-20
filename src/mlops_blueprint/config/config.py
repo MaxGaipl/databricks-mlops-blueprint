@@ -14,24 +14,25 @@ class ProjectConfig(BaseModel):
     def fully_qualified_model_name(self) -> str:
         return f"{self.catalog}.{self.schema}.{self.model_name}"
 
-def load_config(config_path: str, environment: str) -> ProjectConfig:
-    with open(config_path, "r") as f:
-        raw_config = yaml.safe_load(f)
+    @classmethod
+    def from_yaml(cls, config_path: str, environment: str) -> "ProjectConfig":
+        with open(config_path, "r") as f:
+            raw_config = yaml.safe_load(f)
 
-    # 1. Get the shared/global attributes
-    base_config = {
-        k: v for k, v in raw_config.items() if k != "environments"
-    }
+        # 1. Get the shared/global attributes
+        base_config = {
+            k: v for k, v in raw_config.items() if k != "environments"
+        }
 
-    # 2. Get the environment-specific attributes
-    environments_block = raw_config.get("environments", {})
-    if environment not in environments_block:
-        raise ValueError(f"Environment '{environment}' not found in {config_path}")
-    
-    env_config = environments_block[environment]
+        # 2. Get the environment-specific attributes
+        environments_block = raw_config.get("environments", {})
+        if environment not in environments_block:
+            raise ValueError(f"Environment '{environment}' not found in {config_path}")
+        
+        env_config = environments_block[environment]
 
-    # 3. Merge them together (env_config overwrites base_config if they overlap)
-    merged_config = {**base_config, **env_config, "environment": environment}
+        # 3. Merge them together (env_config overwrites base_config if they overlap)
+        merged_config = {**base_config, **env_config, "environment": environment}
 
-    # 4. Pass the flat, merged dictionary to Pydantic
-    return ProjectConfig(**merged_config)
+        # 4. Pass the flat, merged dictionary to Pydantic
+        return cls(**merged_config)

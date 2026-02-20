@@ -1,6 +1,6 @@
 import typer
 import logging
-from mlops_blueprint.config.config import load_config
+from mlops_blueprint.config.config import ProjectConfig
 from databricks.connect import DatabricksSession
 from mlflow.tracking import MlflowClient
 from mlops_blueprint.batch_inference.score import score_batch
@@ -16,7 +16,7 @@ def main(
     env: str = typer.Option(..., help="Target environment (dev, sit, prod)"),
     input_table: str = typer.Option(None, help="Inference data table")
 ):
-    config = load_config(config_path, env)
+    config = ProjectConfig.from_yaml(config_path, env)
     
     # Configure root logger dynamically
     logging.basicConfig(level=config.log_level.upper())

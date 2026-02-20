@@ -1,6 +1,6 @@
 import typer
 import logging
-from mlops_blueprint.config.config import load_config
+from mlops_blueprint.config.config import ProjectConfig
 from mlflow.tracking import MlflowClient
 from mlops_blueprint.deployment.promote import promote_model
 from mlops_blueprint.deployment.promote import promote_model
@@ -11,7 +11,7 @@ def main(
     config_path: str = typer.Option("conf/project.yml", "--config", help="Path to YAML project config"),
     env: str = typer.Option(..., help="Target environment (dev, sit, prod)")
 ):
-    config = load_config(config_path, env)
+    config = ProjectConfig.from_yaml(config_path, env)
     
     # Configure root logger dynamically
     logging.basicConfig(level=config.log_level.upper())
