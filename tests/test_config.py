@@ -1,6 +1,6 @@
 import pytest
 from pathlib import Path
-from mlops_blueprint.config.config import ProjectConfig
+from config.config import ProjectConfig
 from pydantic import ValidationError
 
 def get_config_files():
