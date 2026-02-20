@@ -743,7 +743,6 @@ wheels = [
 
 [[package]]
 name = "mlops-blueprint"
-version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "mlflow" },
@@ -762,7 +761,9 @@ local-dev = [
 
 [package.dev-dependencies]
 local-dev = [
+    { name = "databricks-connect" },
     { name = "pip" },
+    { name = "pytest" },
 ]
 
 [package.metadata]
@@ -779,7 +780,11 @@ requires-dist = [
 provides-extras = ["local-dev"]
 
 [package.metadata.requires-dev]
-local-dev = [{ name = "pip", specifier = ">=26.0.1" }]
+local-dev = [
+    { name = "databricks-connect", specifier = ">=18.0.3" },
+    { name = "pip", specifier = ">=26.0.1" },
+    { name = "pytest", specifier = ">=9.0.2" },
+]
 
 [[package]]
 name = "numpy"

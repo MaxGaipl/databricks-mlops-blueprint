@@ -101,3 +101,6 @@ id_ed25519
 secrets/
 config/local/*.yml
 local_settings.py
+
+# Version file (auto-generated)
+src/_version.py
