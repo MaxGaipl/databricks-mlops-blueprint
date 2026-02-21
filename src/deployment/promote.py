@@ -34,5 +34,5 @@ def promote_model(client: MlflowClient, model_name: str):
         logger.info("Successfully deployed model to champion alias.")
     except Exception as e:
         logger.error(f"Failed to find or assign challenger model. Error: {e}")
-        raise e
+        raise
     # -------------------------------------------------------------

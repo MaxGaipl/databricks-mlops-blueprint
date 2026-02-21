@@ -7,8 +7,6 @@ from .compute_features import compute_features
 # Optional: Add databricks feature store import
 # from databricks.feature_engineering import FeatureEngineeringClient
 
-# from databricks.feature_engineering import FeatureEngineeringClient
-
 app = typer.Typer()
 
 @app.command()
@@ -38,7 +36,7 @@ def main(
     transformed_df = compute_features(df)
     
     # Write to feature store / unity catalog
-    feature_table = f"{config.catalog}.{config.schema}.features_table"
+    feature_table = f"{config.catalog}.{config.schema_name}.features_table"
     logger.info(f"Feature engineering complete. Prepared to write to {feature_table}")
     
     # fe = FeatureEngineeringClient()

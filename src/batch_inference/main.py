@@ -42,7 +42,7 @@ def main(
         
     except Exception as e:
         logger.error(f"Cannot run inference: {e}")
-        raise e
+        raise
 
 if __name__ == "__main__":
     app()

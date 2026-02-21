@@ -7,7 +7,6 @@ from pathlib import Path
 # Template defaults to look for
 DEFAULT_PROJECT_NAME = "mlops-blueprint"
 DEFAULT_SNAKE_CASE_NAME = "mlops_blueprint"
-DEFAULT_HOST_URL = "https://dbc-c01c01f3-1172.cloud.databricks.com"
 
 # Directories to skip during find-and-replace
 SKIP_DIRS = {

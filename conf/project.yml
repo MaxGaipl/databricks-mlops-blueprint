@@ -6,16 +6,16 @@ training_data_path: "samples.nyctaxi.trips"
 environments:
   sandbox:
     catalog: "sandbox"
-    schema: "mlops_blueprint"
+    schema_name: "mlops_blueprint"
     experiment_name: "/sandbox-mlops-blueprint-experiment"
     log_level: "DEBUG"
   sit:
     catalog: "sit"
-    schema: "mlops_blueprint"
+    schema_name: "mlops_blueprint"
     experiment_name: "/sit-mlops-blueprint-experiment"
     log_level: "INFO"
   prod:
     catalog: "prod"
-    schema: "mlops_blueprint"
+    schema_name: "mlops_blueprint"
     experiment_name: "/prod-mlops-blueprint-experiment"
     log_level: "INFO"

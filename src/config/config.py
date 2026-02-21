@@ -4,7 +4,7 @@ from pydantic import BaseModel, Field
 class ProjectConfig(BaseModel):
     environment: str = Field(description="The deployment environment (dev, sit, prod)")
     catalog: str = Field(description="The Unity Catalog name")
-    schema: str = Field(description="The Schema name")
+    schema_name: str = Field(description="The Schema name")
     experiment_name: str = Field(description="MLflow experiment path")
     model_name: str = Field(description="Name of the model in UC")
     training_data_path: str = Field(description="Path to the bronze/raw data")
@@ -12,7 +12,7 @@ class ProjectConfig(BaseModel):
 
     @property
     def fully_qualified_model_name(self) -> str:
-        return f"{self.catalog}.{self.schema}.{self.model_name}"
+        return f"{self.catalog}.{self.schema_name}.{self.model_name}"
 
     @classmethod
     def from_yaml(cls, config_path: str, environment: str) -> "ProjectConfig":

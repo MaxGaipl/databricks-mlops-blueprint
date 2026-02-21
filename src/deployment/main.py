@@ -6,6 +6,7 @@ from .promote import promote_model
 
 app = typer.Typer()
 
+@app.command()
 def main(
     config_path: str = typer.Option("conf/project.yml", "--config", help="Path to YAML project config"),
     env: str = typer.Option(..., help="Target environment (dev, sit, prod)")
