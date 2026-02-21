@@ -16,7 +16,6 @@
 # MAGIC *   **Locally (IDE):** It spins up a Databricks Connect session using your local configuration.
 
 # COMMAND ----------
-import IPython
 from databricks.connect import DatabricksSession
 from databricks.sdk import WorkspaceClient
 
@@ -27,17 +26,6 @@ spark = DatabricksSession.builder.getOrCreate()
 # Note: databricks.sdk.WorkspaceClient provides the most robust dbutils implementation
 dbutils = WorkspaceClient().dbutils
 
-# 3. Explicitly define display for local IDEs (fallback to IPython.display if 'display' is not globally injected by Databricks)
-try:
-    display = display
-except NameError:
-    # If we are in an IDE (Databricks Connect), use IPython's display
-    def display(df, *args, **kwargs):
-        if hasattr(df, "toPandas"):
-            IPython.display.display(df.limit(10).toPandas())
-        else:
-            IPython.display.display(df)
-
 print(f"Connected to Databricks cluster. Spark version: {spark.version}")
 
 # COMMAND ----------
@@ -47,8 +35,8 @@ print(f"Connected to Databricks cluster. Spark version: {spark.version}")
 
 # COMMAND ----------
 # Example: Querying a sample dataset (replace with your catalog.schema.table)
-# df = spark.table("samples.nyctaxi.trips")
-# display(df)
+df = spark.table("samples.nyctaxi.trips")
+display(df)
 
 # Example: Using dbutils to interact with DBFS or Volumes
 # files = dbutils.fs.ls("/")
