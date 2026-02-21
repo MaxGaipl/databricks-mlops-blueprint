@@ -4,10 +4,10 @@ training_data_path: "samples.nyctaxi.trips"
 
 # Environment specific overrides
 environments:
-  dev:
-    catalog: "dev"
+  sandbox:
+    catalog: "sandbox"
     schema: "mlops_blueprint"
-    experiment_name: "/dev-mlops-blueprint-experiment"
+    experiment_name: "/sandbox-mlops-blueprint-experiment"
     log_level: "DEBUG"
   sit:
     catalog: "sit"
