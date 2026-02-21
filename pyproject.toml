@@ -29,7 +29,7 @@ where = ["src"]
 
 [dependency-groups]
 local-dev = [
-    "databricks-connect>=18.0.3",
+    "databricks-connect==17.3",
     "pip>=26.0.1",
     "pytest>=9.0.2",
 ]

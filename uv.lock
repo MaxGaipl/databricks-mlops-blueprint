@@ -224,7 +224,7 @@ wheels = [
 
 [[package]]
 name = "databricks-connect"
-version = "18.0.3"
+version = "17.3.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "databricks-sdk" },
@@ -241,7 +241,7 @@ dependencies = [
     { name = "zstandard" },
 ]
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/49/8c/f732d4ac8b40842c661862cd297a18464edb0b212726e69965e6e00d046a/databricks_connect-18.0.3-py2.py3-none-any.whl", hash = "sha256:5939c3fae3418a1c0bb37657b7fd411137c9a56d669d1fc8f2a98114f10b15f4", size = 2767690 },
+    { url = "https://files.pythonhosted.org/packages/42/a9/d7b55875fba8e3edf18a7571cd4076f1d46081b28a058fddaa0d91a3eb24/databricks_connect-17.3.0-py2.py3-none-any.whl", hash = "sha256:d840c03c29cbd6dd75cdb4a4bae015c305c75e9a563a6646640c959de70eeac0", size = 2727726 },
 ]
 
 [[package]]
@@ -753,12 +753,6 @@ dependencies = [
     { name = "typer" },
 ]
 
-[package.optional-dependencies]
-local-dev = [
-    { name = "databricks-connect" },
-    { name = "pytest" },
-]
-
 [package.dev-dependencies]
 local-dev = [
     { name = "databricks-connect" },
@@ -768,20 +762,17 @@ local-dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "databricks-connect", marker = "extra == 'local-dev'", specifier = ">=17.2.0" },
     { name = "mlflow", specifier = ">=2.11.3" },
     { name = "pandas", specifier = ">=1.5.3" },
     { name = "pydantic", specifier = ">=2.0.0" },
-    { name = "pytest", marker = "extra == 'local-dev'", specifier = ">=7.1.2" },
     { name = "pyyaml", specifier = ">=6.0.1" },
     { name = "scikit-learn", specifier = ">=1.1.1" },
     { name = "typer", specifier = ">=0.12.0" },
 ]
-provides-extras = ["local-dev"]
 
 [package.metadata.requires-dev]
 local-dev = [
-    { name = "databricks-connect", specifier = ">=18.0.3" },
+    { name = "databricks-connect", specifier = "==17.3" },
     { name = "pip", specifier = ">=26.0.1" },
     { name = "pytest", specifier = ">=9.0.2" },
 ]
