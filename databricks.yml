@@ -5,7 +5,7 @@ artifacts:
   default:
     type: whl
     path: .
-    # Uses local `uv` or `python -m build` automatically
+    build: uv build
 
 include:
   - resources/*.yml
@@ -16,12 +16,10 @@ targets:
     mode: development
     workspace:
       host: https://dbc-c01c01f3-1172.cloud.databricks.com
-    variables:
-      env: dev
+      profile: "DEFAULT"
 
   prod:
     mode: production
     workspace:
       host: https://dbc-c01c01f3-1172.cloud.databricks.com
-    variables:
-      env: prod
+      profile: "DEFAULT"
