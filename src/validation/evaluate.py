@@ -7,6 +7,11 @@ def evaluate_model(model_name: str) -> bool:
     """
     Template function to validate and evaluate your trained model.
     
+    BEST PRACTICE: Make your business logic completely independent of the
+    Databricks environment. Avoid using the global `spark` or `dbutils` objects 
+    (the `__builtins__`). This ensures your evaluation code can be run 
+    locally or within CI/CD pipelines.
+
     USER TODO: Add your custom validation and evaluation logic here.
     For example:
         eval_result = mlflow.evaluate(...)

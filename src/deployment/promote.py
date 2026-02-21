@@ -7,6 +7,10 @@ def promote_model(client: MlflowClient, model_name: str):
     """
     Template function to manage model deployment and registry aliases.
     
+    BEST PRACTICE: Make your business logic completely independent of the
+    Databricks environment. Pass required clients (like MlflowClient) as arguments 
+    rather than initializing them globally or relying on Databricks notebook context.
+
     USER TODO: Add your custom promotion logic here.
     For example:
         # Fetch the model version with "challenger" alias and promote to "champion"

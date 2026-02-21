@@ -1,12 +1,18 @@
 import logging
 from pyspark.sql import DataFrame
+from pyspark.sql import SparkSession
 
 logger = logging.getLogger(__name__)
 
-def score_batch(model_uri: str, input_df: DataFrame) -> DataFrame:
+def score_batch(model_uri: str, input_df: DataFrame, spark: SparkSession = None) -> DataFrame:
     """
     Template function to perform batch inference using a trained model.
     
+    BEST PRACTICE: Make your business logic completely independent of the
+    Databricks environment. Avoid using the global `spark` or `dbutils` objects 
+    (the `__builtins__`). Instead, pass DataFrames directly or pass the 
+    SparkSession as an argument. This ensures local testability.
+
     USER TODO: Add your custom scoring logic here.
     For example:
         # from databricks.feature_engineering import FeatureEngineeringClient
@@ -17,6 +23,7 @@ def score_batch(model_uri: str, input_df: DataFrame) -> DataFrame:
     Args:
         model_uri: The URI of the model to use for inference (e.g. models:/<name>@champion).
         input_df: The input Spark DataFrame to score.
+        spark: (Optional) The SparkSession.
         
     Returns:
         Spark DataFrame containing the predictions.

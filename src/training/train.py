@@ -7,6 +7,11 @@ def build_model(training_set):
     """
     Template function to train your machine learning model.
     
+    BEST PRACTICE: Make your business logic completely independent of the
+    Databricks environment. Avoid using the global `spark` or `dbutils` objects 
+    (the `__builtins__`). This ensures your model training code can be run 
+    locally or within CI/CD pipelines without relying on remote cluster context.
+
     USER TODO: Add your custom model training logic here.
     For example:
         from sklearn.ensemble import RandomForestRegressor
