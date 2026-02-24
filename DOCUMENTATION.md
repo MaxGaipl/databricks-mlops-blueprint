@@ -30,12 +30,12 @@ We use a **two-layered** configuration system:
 ### Environment Support
 The `ProjectConfig` class (in `src/config/config.py`) implements a merging logic:
 - Global parameters are defined at the top level of `conf/project.yml`.
-- Environment-specific overrides (e.g., `dev`, `sit`, `prod`) are defined under the `environments` key.
+- Environment-specific overrides (e.g., `sandbox`, `sit`, `prod`) are defined under the `environments` key.
 
 To load a config for a specific environment:
 ```python
 from config.config import ProjectConfig
-config = ProjectConfig.from_yaml("conf/project.yml", "dev")
+config = ProjectConfig.from_yaml("conf/project.yml", "sandbox")
 ```
 
 ---
@@ -57,7 +57,7 @@ Use `notebooks/scratchpad.py` for interactive coding. With the [Databricks Exten
 Each ML stage (Feature Engineering, Training, etc.) is defined as a CLI command in `pyproject.toml`. This allows you to run them locally for debugging:
 ```bash
 # Example: Run feature engineering locally
-python -m feature_engineering.main --env dev
+python -m feature_engineering.main --env sandbox
 ```
 
 ---
