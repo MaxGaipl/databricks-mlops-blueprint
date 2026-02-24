@@ -2,7 +2,7 @@ import yaml
 from pydantic import BaseModel, Field
 
 class ProjectConfig(BaseModel):
-    environment: str = Field(description="The deployment environment (dev, sit, prod)")
+    environment: str = Field(description="The deployment environment (sandbox, sit, prod)")
     catalog: str = Field(description="The Unity Catalog name")
     schema_name: str = Field(description="The Schema name")
     experiment_name: str = Field(description="MLflow experiment path")
